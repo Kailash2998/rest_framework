@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD PROJECT</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+        .ms{
+            color:green;
+        }
+    </style>
+</head>
+
+<body>
+    {% if messages %}
+          {% for message in messages%}
+          <p class="ms">{{message}}</p>
+          {% endfor %}
+    {% endif %}
+
+    <h1>om sai ram </h1>
+        welcome ,{{name}}
+        <br>
+        <form action="" method="POST" novalidate>
+            {% csrf_token %}
+    
+            {%if form.non_field_errors%}
+                {% for error in form.non_field_errors %}
+                <p class="er">{{error}}</p>
+                {%endfor%}
+            {%endif%}
+    
+            {%for fm in form %}
+               {{fm.label_tag}} {{fm}} {{fm.errors|striptags}} <br><br>
+            {% endfor %}
+    
+            <input type="submit" class="text-center btn btn-success" value="save">
+        </form>
+    <a href="{% url 'logout' %}">logout</a>
+</body>
+
+</html>
